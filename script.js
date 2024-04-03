@@ -178,5 +178,16 @@ beInspired(randomQuote);
 
 console.log(randomQuote);
 
-//Adding the button to the DOM property for the event- Using a function pointer:
-document.getElementById("clickMe").onclick = beInspired(randomQuote);
+let button = document.getElementById('clickMe');
+let quoteDisplay = document.getElementById('quoteDisplay')
+
+function showQuote(){
+    quoteDisplay.innerHTML = beInspired(randomQuote);
+    button.innerHTML = 'Feed Your Mind';
+    button.style.cursor = 'default;'
+}
+
+
+document.addEventListener('click', showQuote);
+
+
