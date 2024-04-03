@@ -170,7 +170,7 @@ switch(quote) {
 
 function beInspired () {
     const finalMessage = randomQuote.join('\n');
-    console.log(finalMessage);
+    return finalMessage;
    
 };
 
