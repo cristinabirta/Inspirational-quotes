@@ -17,7 +17,7 @@ This project is a simple web application that displays inspirational quotes. It 
 
 ## Usage
 
-To use the Inspirational Quotes project, simply open the `index.html` file in a web browser. The application will automatically display a quote on page load. To generate a new quote, click the "Feed your mind" button. You'll notice that with every click the list of quotes and the background image are changing. 
+To use the Inspirational Quotes project, simply open the `index.html` file in a web browser. The application will instruct you to click the "Feed your mind" button that will generate a list of 3 quotes, one to get you inspired to travel, one to love another one to succeed in life. You'll notice that with every click the list of quotes and the background image are changing. 
 So enjoy being inspired and relax!
 
 ## Development
@@ -33,7 +33,7 @@ If you'd like to contribute to the development of the Inspirational Quotes proje
 ## Credits
 
 - Inspirational quotes sourced from various authors and sources.
-- Project inspired by the desire to spread positivity and motivation through a simple web applications.
+- Project inspired by the desire to spread positivity and motivation through this simple web application.
 
 ## License
 
