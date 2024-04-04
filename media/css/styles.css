@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('media/images/background7.jpg'); /* Default background image */
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    position: relative; /* Set position to relative to position child elements */
+    font-size: larger;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 1; /* Ensure the overlay appears behind the main content */
+}
+
+main {
+    text-align: center;
+    margin-top: 20px;
+    position: relative; /* Ensure z-index works properly */
+    z-index: 2; /* Set a higher z-index to ensure it's above the overlay */
+    color: #ffffff;
+}
+
+
+h4{
+    margin-bottom: 50px;
+}
+
+button {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    color: #ffffff;
+    border-color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+button:hover {
+    animation: glowing-border 1s infinite alternate;
+}
+
+@keyframes glowing-border {
+    0% {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+.quote-list {
+    text-align: left;
+}
+
+#quoteDisplay {
+    margin-bottom: 50px;
+    color: #ffffff;
+    border-color: rgb(140, 140, 140);
+}
+
+/* Remove bullet points from list */
+#quoteDisplay ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

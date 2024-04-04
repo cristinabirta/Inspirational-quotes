@@ -7,7 +7,7 @@ function generateRandomNumber(num) {
 
 //Object containing 3 arrays
 const inspirationalQuotes = {
-    loveQuotes: [
+    loveQuote: [
     '"Love has nothing to do with what you are expecting to get\-only with what you are expecting to give\-which is everything. — “Katharine Hepburn',
     '"Where there is love there is life.”—Mahatma Gandhi',
     '"Whatever our souls are made of, his and mine are the same."—Emily Brontë',
@@ -59,7 +59,7 @@ const inspirationalQuotes = {
     '"The best thing to hold onto in life is each other."—Audrey Hepburn',
     '“It is better to have loved and lost, than never to have loved at all."—Alfred, Lord Tennyson'
     ],
-    motivationalQuotes: [
+    motivationalQuote: [
         '"It takes courage to grow up and become who you really are." — E.E. Cummings',
         '"Your self-worth is determined by you. You don\'t have to depend on someone telling you who you are." — Beyoncé',
         '"Nothing is impossible. The word itself says \'I\'m possible!\'" — Audrey Hepburn',
@@ -112,7 +112,7 @@ const inspirationalQuotes = {
         '"In three words I can sum up everything I\'ve learned about life: It goes on." — Robert Frost',
         '"If you fail, never give up because F.A.I.L. means \"First Attemp In Learning\"; End is not the end, in fact E.N.D. means \"Effort Never Dies\"; If you get NO as an answer, remember N.O. means \"Next Opportunity\" — Morgan Freeman'
         ],
-        travelQuotes: [
+        travelQuote: [
             '“Life is either a daring adventure or nothing at all.”― Helen Keller',
             '“Travel far enough, you meet yourself.”― David Mitchell',
             '“Wherever you go becomes a part of you somehow.”― Anita Desai',
@@ -146,48 +146,90 @@ const inspirationalQuotes = {
             ]   
 }
 
-// Store the quotes in an array
-let randomQuote = []; 
+const backgrounds = [
+    "media/images/background1.jpg", "media/images/background2.jpg","media/images/background3.jpg","media/images/background4.jpg","media/images/background5.jpg","media/images/background6.jpg","media/images/background7.jpg","media/images/background8.jpg","media/images/background9.jpg","media/images/background10.jpg","media/images/background11.jpg","media/images/background12.jpg","media/images/background13.jpg","media/images/background14.jpg","media/images/background15.jpg","media/images/background16.jpg","media/images/background17.jpg","media/images/background18.jpg","media/images/background19.jpg","media/images/background20.jpg","media/images/background21.jpg","media/images/background22.jpg","media/images/background23.jpg","media/images/background24.jpg","media/images/background25.jpg","media/images/background26.jpg","media/images/background27.jpg","media/images/background28.jpg","media/images/background29.jpg","media/images/background30.jpg","media/images/background31.jpg","media/images/background32.jpg","media/images/background33.jpg","media/images/background34.jpg","media/images/background35.jpg","media/images/background36.jpg","media/images/background37.jpg","media/images/background38.jpg","media/images/background39.jpg","media/images/background40.jpg","media/images/background41.jpg","media/images/background42.jpg","media/images/background43.jpg","media/images/background44.jpg","media/images/background45.jpg","media/images/background46.jpg","media/images/background47.jpg","media/images/background48.jpg","media/images/background49.jpg","media/images/background50.jpg"
+]
 
-//Iterate over the object
-for(let quote in inspirationalQuotes) {
-    let index = generateRandomNumber(inspirationalQuotes[quote].length);
-
-switch(quote) {
-    case'loveQuotes':
-    randomQuote.push(`Your love quote is ${inspirationalQuotes[quote][index]}.`)
-    break
-    case 'motivationalQuotes':
-    randomQuote.push(`Your motivational quote is ${inspirationalQuotes[quote][index]}.`)
-    break
-    case 'travelQuotes':
-    randomQuote.push(`Your travel quote is ${inspirationalQuotes[quote][index]}`)
-    break
-    default:
-    randomQuote.push('Live your life alive not dead! ')
-};
-};
-
-function beInspired () {
-    const finalMessage = randomQuote.join('\n');
-    return finalMessage;
-   
-};
-
-beInspired(randomQuote);
-
-console.log(randomQuote);
-
-let button = document.getElementById('clickMe');
-let quoteDisplay = document.getElementById('quoteDisplay')
-
-function showQuote(){
-    quoteDisplay.innerHTML = beInspired(randomQuote);
-    button.innerHTML = 'Feed Your Mind';
-    button.style.cursor = 'default;'
+function getRandomItemFromArray(array) {
+    return array[Math.floor(Math.random() * array.length)];
 }
 
+function getRandomQuote(quoteCategory) {
+    const quotes = inspirationalQuotes[quoteCategory];
+    const index = generateRandomNumber(quotes.length);
+    return quotes[index];
+}
 
-document.addEventListener('click', showQuote);
+function generateQuotes() {
+    const randomQuote = [];
 
+    for (let quoteCategory in inspirationalQuotes) {
+        const quote = getRandomQuote(quoteCategory);
+        switch (quoteCategory) {
+            case 'loveQuotes':
+                randomQuote.push(`Your love quote is ${quote}.`);
+                break;
+            case 'motivationalQuotes':
+                randomQuote.push(`Your motivational quote is ${quote}.`);
+                break;
+            case 'travelQuotes':
+                randomQuote.push(`Your travel quote is ${quote}.`);
+                break;
+            default:
+                randomQuote.push('Live your life alive not dead!');
+                break;
+        }
+    }
+    return randomQuote;
+}
 
+function boldFirstFourWords(quote) {
+    const words = quote.split(' ');
+    if (words.length >= 4) {
+        return `<strong>${words.slice(0, 4).join(' ')}</strong>` + words.slice(4).join(' ');
+    }
+    return quote; // If the quote has less than 4 words, return it unchanged
+}
+
+function beInspired() {
+    const randomLoveQuoteIndex = generateRandomNumber(inspirationalQuotes.loveQuote.length);
+    const randomMotivationalQuoteIndex = generateRandomNumber(inspirationalQuotes.motivationalQuote.length);
+    const randomTravelQuoteIndex = generateRandomNumber(inspirationalQuotes.travelQuote.length);
+
+    const loveQuote = `Your love quote is ${inspirationalQuotes.loveQuote[randomLoveQuoteIndex]}`;
+    const motivationalQuote = `Your motivational quote is ${inspirationalQuotes.motivationalQuote[randomMotivationalQuoteIndex]}`;
+    const travelQuote = `Your travel quote is ${inspirationalQuotes.travelQuote[randomTravelQuoteIndex]}`;
+
+    return [loveQuote, motivationalQuote, travelQuote];
+}
+
+const button = document.getElementById('clickMe');
+const quoteDisplay = document.getElementById('quoteDisplay');
+const body = document.body;
+
+function showQuotesAndChangeBackground() {
+    const newBackground = getRandomItemFromArray(backgrounds);
+    body.style.backgroundImage = `url('${newBackground}')`;
+    
+    quoteDisplay.innerHTML = ''; // Clear previous quotes
+    const quotes = beInspired();
+    
+    const listElement = document.createElement('ul');
+    quotes.forEach(quote => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = quote;
+        listElement.appendChild(listItem);
+    });
+    quoteDisplay.appendChild(listElement);
+    
+    button.innerHTML = 'Feed Your Mind';
+    button.style.cursor = 'default';
+}
+
+button.addEventListener('click', showQuotesAndChangeBackground);
+document.addEventListener("DOMContentLoaded", function() {
+    // This function will be executed after the DOM content has been fully loaded
+
+    // Set the background image
+    document.body.style.backgroundImage = "url('media/images/background1.jpg')";
+});
